@@ -342,3 +342,4 @@ The Dockerfile uses multi-stage builds to:
 5. Set up logging and error tracking
 6. Configure HTTPS/SSL for production
 7. Add database and other services to `docker-compose.yml` if needed
+# AWS Deployment Ready
