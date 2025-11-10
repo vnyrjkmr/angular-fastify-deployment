@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: angular-fastify-app
+    env: docker
+    plan: free
+    region: oregon
+    branch: master
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
