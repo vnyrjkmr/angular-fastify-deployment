@@ -5,14 +5,11 @@ FROM node:18-alpine AS frontend-build
 
 WORKDIR /app/frontend
 
-# Copy frontend package files
-COPY frontend/package*.json ./
+# Copy frontend source first (needed for postinstall script)
+COPY frontend/ ./
 
 # Install dependencies (including dev dependencies for build)
-RUN npm ci
-
-# Copy frontend source
-COPY frontend/ ./
+RUN npm ci --legacy-peer-deps --ignore-scripts && npm run postinstall || true
 
 # Build Angular app for production
 RUN npm run build -- --configuration production
@@ -26,7 +23,7 @@ WORKDIR /app/backend
 COPY backend/package*.json ./
 
 # Install only production dependencies
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 # Stage 3: Production Image
 FROM node:18-alpine
