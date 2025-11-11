@@ -6,8 +6,11 @@ User `demo-access-key-user` cannot deploy to AWS ECR/ECS due to missing permissi
 ## Error Messages
 ```
 ✗ ecr:GetAuthorizationToken - Cannot login to ECR
-✗ ecr:CreateRepository - Cannot create ECR repository
-✗ ecr:PutImage - Cannot push Docker images
+✗ ecr:CreateRepository - Cannot create ECR repository  
+✗ ecr:PutImage - Cannot push Docker images (403 Forbidden)
+✗ ecr:InitiateLayerUpload - Cannot upload image layers
+✗ ecr:UploadLayerPart - Cannot upload layer parts
+✗ ecr:CompleteLayerUpload - Cannot complete uploads
 ✗ ecs:* - Cannot deploy to ECS
 ```
 
@@ -26,7 +29,7 @@ aws iam attach-user-policy \
 # ECS Full Access (if deploying to ECS)
 aws iam attach-user-policy \
   --user-name demo-access-key-user \
-  --policy-arn arn:aws:iam::aws:policy/AmazonECS_FullAccess
+  --policy-arn arn:aws:iam::aws:policy/AmazonECS_FullAccess 
 ```
 
 ### Option 2: Create Custom Policy (Minimal Permissions)
