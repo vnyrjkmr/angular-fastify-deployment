@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "YOUR_AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/angular-fastify-app:latest",
+    "Name": "466897160569.dkr.ecr.us-east-1.amazonaws.com/angular-fastify-app:latest",
     "Update": "true"
   },
   "Ports": [
