@@ -177,6 +177,27 @@ Expected response:
 
 ## Troubleshooting
 
+### Error: "Unable to assume the service linked role"
+**Issue:** `Unable to assume the service linked role. Please verify that the ECS service linked role exists.`
+
+**Solution - Ask AWS Admin to run:**
+```bash
+aws iam create-service-linked-role --aws-service-name ecs.amazonaws.com
+```
+
+**Alternative - Use EC2 Launch Type instead of Fargate:**
+1. In Step 2.3, change:
+   - Compute options: `Launch type`
+   - Launch type: `EC2` (instead of FARGATE)
+2. You'll need an EC2 instance registered with the cluster
+3. This avoids the service-linked role requirement
+
+**Quickest Fix - Deploy to Render.com:**
+Since AWS requires multiple IAM permissions, consider Render.com (free, no permissions needed):
+1. Go to: https://render.com
+2. Connect GitHub → Select your repo
+3. Deploy in 5 minutes
+
 ### Task Won't Start
 **Issue:** Task status shows "STOPPED"
 **Solution:** 
